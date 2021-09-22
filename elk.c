@@ -581,6 +581,7 @@ static jsval_t js_block(struct js *js, bool create_scope) {
   while (js->tok != TOK_EOF && js->tok != TOK_RBRACE) {
     js->pos = skiptonext(js->code, js->clen, js->pos);
     if (js->pos < js->clen && js->code[js->pos] == '}') break;
+    if (js->pos >= js->clen) break;
     res = js_stmt(js, TOK_RBRACE);
     // printf(" blstmt [%.*s]\n", js->pos - pos, &js->code[pos]);
   }
