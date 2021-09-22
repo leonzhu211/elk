@@ -1064,7 +1064,7 @@ static jsval_t js_expr(struct js *js, uint8_t etok, uint8_t etok2) {
       // Convert this plus or minus to unary if required
       if (tok == TOK_PLUS || tok == TOK_MINUS) {
         bool convert =
-            (n == 0) || (is_op(pt) && (!is_unary(pt) || is_right_assoc(pt)));
+            (n == 0) || (is_op(pt) && (pt != TOK_CALL) && (!is_unary(pt) || is_right_assoc(pt)));
         if (convert && tok == TOK_PLUS) tok = TOK_UPLUS;
         if (convert && tok == TOK_MINUS) tok = TOK_UMINUS;
       }
